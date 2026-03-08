@@ -16,6 +16,7 @@ Custom Claude Code skills, settings e statusline — versionados para restauraç
 | Skill | Descrição |
 |-------|-----------|
 | `yolo-sprint` | Executa todas as stories `ready-for-dev` em sequência: dev-story → code-review → fix → lint/build → commit → push → close issue. Sem paradas, sem confirmações. |
+| `yolo-code-review` | Executa code-review adversarial BMAD em lote para todas as stories em `review`: review → auto-fix → lint/build → commit → push → atualiza sprint → atualiza/fecha issue. Sem paradas, sem confirmações. |
 | `create-story-issues` | Gera story files em lote via BMAD create-story e espelha no GitHub (Milestone > Epic Issues > Story Sub-issues) |
 
 ## Statusline
@@ -86,6 +87,7 @@ O sync copia os arquivos para este repo, commita e pusha.
 ## Usage
 
 ```bash
+# --- yolo-sprint ---
 # Preview what would be executed
 /yolo-sprint --dry-run
 
@@ -97,6 +99,22 @@ O sync copia os arquivos para este repo, commita e pusha.
 
 # Run only one story
 /yolo-sprint --only 4-1
+
+# --- yolo-code-review ---
+# Preview stories in 'review' status
+/yolo-code-review --dry-run
+
+# Review all stories in 'review' status
+/yolo-code-review
+
+# Review from a specific story
+/yolo-code-review --from 4-5
+
+# Review only one story
+/yolo-code-review --only 4-5
+
+# Review stories with a different status (e.g. done)
+/yolo-code-review --status done
 ```
 
 ## License
