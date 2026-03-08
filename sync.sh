@@ -22,6 +22,9 @@ done
 # Copy settings.json
 [ -f "$HOME/.claude/settings.json" ] && cp "$HOME/.claude/settings.json" "$REPO_DIR/settings.json"
 
+# Copy statusline script
+[ -f "$HOME/.claude/statusline-command.sh" ] && cp "$HOME/.claude/statusline-command.sh" "$REPO_DIR/statusline-command.sh"
+
 # Check if there are changes
 if git diff --quiet && git diff --cached --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
   echo "No changes to sync."

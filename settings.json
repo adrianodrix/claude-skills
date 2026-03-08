@@ -1,13 +1,4 @@
 {
-  "enabledPlugins": {
-    "notion-workspace-plugin@notion-plugin-marketplace": true,
-    "frontend-design@claude-plugins-official": true,
-    "context7@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
-  },
-  "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": true,
   "hooks": {
     "PostToolUse": [
       {
@@ -15,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if echo \"$TOOL_INPUT\" | grep -q -e '.claude/commands/.*\\.md' -e '.claude/settings.json'; then ~/Projects/claude-skills/sync.sh 'chore: auto-sync after edit' 2>/dev/null; fi",
+            "command": "if echo \"$TOOL_INPUT\" | grep -q -e '.claude/commands/.*\\.md' -e '.claude/settings.json' -e '.claude/statusline-command.sh'; then ~/Projects/claude-skills/sync.sh 'chore: auto-sync after edit' 2>/dev/null; fi",
             "async": true
           }
         ]
@@ -25,11 +16,25 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if echo \"$TOOL_INPUT\" | grep -q -e '.claude/commands/.*\\.md' -e '.claude/settings.json'; then ~/Projects/claude-skills/sync.sh 'chore: auto-sync after write' 2>/dev/null; fi",
+            "command": "if echo \"$TOOL_INPUT\" | grep -q -e '.claude/commands/.*\\.md' -e '.claude/settings.json' -e '.claude/statusline-command.sh'; then ~/Projects/claude-skills/sync.sh 'chore: auto-sync after write' 2>/dev/null; fi",
             "async": true
           }
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "notion-workspace-plugin@notion-plugin-marketplace": true,
+    "frontend-design@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "language": "pt_BR",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
   }
 }
