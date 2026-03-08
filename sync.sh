@@ -14,10 +14,13 @@ fi
 
 cd "$REPO_DIR"
 
-# Copy all .md files except README
+# Copy all .md skill files except README
 for file in "$SKILLS_DIR"/*.md; do
   [ -f "$file" ] && cp "$file" "$REPO_DIR/"
 done
+
+# Copy settings.json
+[ -f "$HOME/.claude/settings.json" ] && cp "$HOME/.claude/settings.json" "$REPO_DIR/settings.json"
 
 # Check if there are changes
 if git diff --quiet && git diff --cached --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then

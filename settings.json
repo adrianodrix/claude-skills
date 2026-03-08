@@ -1,0 +1,35 @@
+{
+  "enabledPlugins": {
+    "notion-workspace-plugin@notion-plugin-marketplace": true,
+    "frontend-design@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$TOOL_INPUT\" | grep -q -e '.claude/commands/.*\\.md' -e '.claude/settings.json'; then ~/Projects/claude-skills/sync.sh 'chore: auto-sync after edit' 2>/dev/null; fi",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$TOOL_INPUT\" | grep -q -e '.claude/commands/.*\\.md' -e '.claude/settings.json'; then ~/Projects/claude-skills/sync.sh 'chore: auto-sync after write' 2>/dev/null; fi",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}
